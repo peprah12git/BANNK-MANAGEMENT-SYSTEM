@@ -30,7 +30,7 @@ public abstract class Account {
     public String getCustomer(String customer) {
         return customer;
     }
-    public double getBalance(double balance) {
+    public double getBalance() {
         return balance;
     }
     public String getStatus() {

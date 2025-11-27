@@ -2,11 +2,12 @@ package account;
 
 import customers.Customer;
 
-public class CheckingAccount  extends Account{
+public class CheckingAccount extends Account {
+
     private double overdraftLimit;
     private double monthlyFee;
 
-    // Contructor
+    // Constructor
     public CheckingAccount(String accountNumber, Customer customer, double balance, String status) {
         super(accountNumber, customer, balance, status);
         this.overdraftLimit = 1000.0;
@@ -15,19 +16,19 @@ public class CheckingAccount  extends Account{
 
     @Override
     public String displayAccountDetails() {
-        return "Account Number: " + getAccountNumber() ;
+        return "Account Number: " + getAccountNumber() +
                 "\nCustomer Name: " + getCustomer() +
-                "\nAccount Type: checking " +
-                "\nCBalance: $" + getBalance() +
-                "\nOverdraft Limit : $ + overdraftLimit +\n";
+                "\nAccount Type: Checking" +
+                "\nBalance: $" + getBalance() +
+                "\nOverdraft Limit: $" + overdraftLimit;
     }
 
     @Override
     public boolean withdraw(double amount) {
-        double allowedLimit = -overdraftLimit;  // balance can go down to -1000
+        double allowedLimit = -overdraftLimit; // balance can go down to -1000
 
         if (getBalance() - amount < allowedLimit) {
-            System.out.println(" Withdrawal denied! Exceeds overdraft limit of $" + overdraftLimit);
+            System.out.println("Withdrawal denied! Exceeds overdraft limit of $" + overdraftLimit);
             return false;
         }
 
@@ -39,8 +40,8 @@ public class CheckingAccount  extends Account{
         return "Checking";
     }
 
-    public double applyMonthlyFee() {
-        System.out.println("monthly fee of $" + monthlyFee);
+    public void applyMonthlyFee() {
+        System.out.println("Monthly fee of $" + monthlyFee + " applied.");
         setBalance(getBalance() - monthlyFee);
     }
 }
