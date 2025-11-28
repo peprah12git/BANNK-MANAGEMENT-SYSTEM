@@ -8,8 +8,8 @@ public class CheckingAccount extends Account {
     private double monthlyFee;
 
     // Constructor
-    public CheckingAccount(String accountNumber, Customer customer, double balance, String status) {
-        super(accountNumber, customer, balance, status);
+    public CheckingAccount( Customer customer, double balance) {
+        super(customer, balance);
         this.overdraftLimit = 1000.0;
         this.monthlyFee = 10.0;
     }

@@ -1,9 +1,12 @@
 import account.Account;
+import account.AccountManager;
 import account.CheckingAccount;
 import account.SavingsAccount;
 import customers.Customer;
 import customers.PremiumCustomer;
 import customers.RegularCustomer;
+import processTransaction.TransactionManager;
+
 
 import java.util.Scanner;
 
@@ -12,6 +15,8 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+        AccountManager manager = new AccountManager();
+        TransactionManager transactionManager = new TransactionManager();
         int choice;
 
         do {
@@ -31,11 +36,12 @@ public class Main {
             System.out.print("  Enter choice: ");
 
             choice = scanner.nextInt();
+            scanner.nextLine();
             System.out.println();
 
             switch (choice) {
                 case 1:
-                    createAccount(scanner);
+                    createAccount(scanner , manager);
                     break;
 
                 case 2:
@@ -65,13 +71,11 @@ public class Main {
 
     // ===== Menu Functions =====
 
-    public static void createAccount(Scanner scanner) {
+    public static void createAccount(Scanner scanner,AccountManager accountManager) {
         // User Details
         System.out.println("[Enter your details]");
         System.out.println(" Enter Customer name: ");
         String customerName = scanner.nextLine();
-        System.out.println(" Enter Customer contact: ");
-        //
         System.out.println(" Enter Customer age: ");
         int age = scanner.nextInt();
         scanner.nextLine();
@@ -106,8 +110,17 @@ public class Main {
         if (accountType == 1){
             account = new SavingsAccount(customer, deposit);
         }else {
-            account = new CheckingAccount(customer, deposit)
+            account = new CheckingAccount(customer, deposit);
         }
+        accountManager.addAccount(account);
+
+        System.out.print("Account created successfully!!");
+
+        account.displayAccountDetails();
+
+        System.out.println("Press enter to continue...");
+        scanner.nextLine();
+
 
 
     }
