@@ -15,12 +15,13 @@ public class CheckingAccount extends Account {
     }
 
     @Override
-    public String displayAccountDetails() {
-        return "Account Number: " + getAccountNumber() +
+    public void displayAccountDetails() {
+        System.out.println( "Account Number: " + getAccountNumber() +
                 "\nCustomer Name: " + getCustomer() +
                 "\nAccount Type: Checking" +
                 "\nBalance: $" + getBalance() +
-                "\nOverdraft Limit: $" + overdraftLimit;
+                "\nOverdraft Limit: $" + overdraftLimit
+        );
     }
 
     @Override

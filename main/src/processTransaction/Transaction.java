@@ -1,5 +1,7 @@
 package processTransaction;
 
+import java.time.*;
+
 public class Transaction {
     static int  transactionCounter;
     private  String transactionId;
@@ -7,13 +9,15 @@ public class Transaction {
    private String type;
     private double amount;
     private  double balanceAfter;
-    private String StringTimestamp;
+    private String timestamp;
 
     Transaction( String accountNumber, String type, double amount, double balanceAfter){
         this.accountNumber= accountNumber;
         this.type= type;
         this.amount = amount;
         this.balanceAfter= balanceAfter;
+        this.timestamp = LocalDateTime.now().toString();
+
     }
     static String generate() {
         return  String.format("TXN%03d", ++transactionCounter);
@@ -68,13 +72,15 @@ public class Transaction {
     }
 
     public String getStringTimestamp() {
-        return StringTimestamp;
+        return  timestamp;
     }
 
     public void setStringTimestamp(String stringTimestamp) {
-        StringTimestamp = stringTimestamp;
+        timestamp = stringTimestamp;
     }
     public  void  displayTransactionDetails(){
-        return;
+        System.out.printf(
+                " %s | %s | %s | $%.2fd | $%.2f %n", transactionId, timestamp,type, amount, balanceAfter
+        );;
     }
 }

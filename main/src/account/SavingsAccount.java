@@ -9,17 +9,18 @@ public class SavingsAccount extends Account{
     private double minimumBalance;
 
     // Setting constructor
-    public SavingsAccount(String accountNumber, Customer customer, double balance, String status) {
-        super(accountNumber, customer, balance, status);
+    public SavingsAccount( Customer customer, double balance) {
+        super( customer, balance);
         this.interestRate = 3.5;
         this.minimumBalance = 500;
     }
 
     @Override
-    public String displayAccountDetails() {
+    public void displayAccountDetails() {
         String baseDetails;
         System.out.println("Interest Rate: " + interestRate + "%");
         System.out.println("Minimum Balance: $" + minimumBalance);
+
     }
 
     @Override

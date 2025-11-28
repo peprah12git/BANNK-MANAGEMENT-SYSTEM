@@ -11,11 +11,11 @@ public abstract class Account {
     private static int accountCounter= 0;
 
     // Contructor
-    public Account(String accountNumber, Customer customer, double balance, String status) {
+    public Account( Customer customer, double balance) {
         this.accountNumber = generate() ;
         this.customer = customer;
         this.balance = balance;
-        this.status = status;
+        this.status = "active";
         //this.accountNumber= accountCounter;
     }
 
@@ -24,10 +24,10 @@ public abstract class Account {
     }
 
     // Getters for account number
-    public String getAccountNumber(String accountNumber) {
+    public String getAccountNumber() {
         return accountNumber;
     }
-    public String getCustomer(String customer) {
+    public Customer getCustomer() {
         return customer;
     }
     public double getBalance() {
@@ -43,11 +43,11 @@ public abstract class Account {
     }
 
     // Setters for balance
-    public String setBalance(String balance) {
+    public double setBalance(double balance) {
         return balance;
     }
     // get accounts.Account method & Display Account method
-    public abstract String displayAccountDetails();
+    public abstract void displayAccountDetails();
     public abstract String getAccountType();
 
     // Deposit money
@@ -60,12 +60,13 @@ public abstract class Account {
         }
     }
     // Withdraw Money
-    public  void withdraw(double amount){
+    public  boolean withdraw(double amount){
         if (amount > balance){
             System.out.println("Insufficient funds withdrawer can not be made");
         }else {
             balance-=amount;
             System.out.println("Withdrawal made successfully");
         }
+        return true;
     }
 }

@@ -1,3 +1,10 @@
+import account.Account;
+import account.CheckingAccount;
+import account.SavingsAccount;
+import customers.Customer;
+import customers.PremiumCustomer;
+import customers.RegularCustomer;
+
 import java.util.Scanner;
 
 public class Main {
@@ -28,7 +35,7 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    createAccount();
+                    createAccount(scanner);
                     break;
 
                 case 2:
@@ -58,10 +65,51 @@ public class Main {
 
     // ===== Menu Functions =====
 
-    public static void createAccount() {
-        System.out.println("[Create Account]");
-        System.out.println("Account creation feature coming soon...");
-        System.out.println();
+    public static void createAccount(Scanner scanner) {
+        // User Details
+        System.out.println("[Enter your details]");
+        System.out.println(" Enter Customer name: ");
+        String customerName = scanner.nextLine();
+        System.out.println(" Enter Customer contact: ");
+        //
+        System.out.println(" Enter Customer age: ");
+        int age = scanner.nextInt();
+        scanner.nextLine();
+        //
+        System.out.println(" Enter Customer contact: ");
+        String contact = scanner.nextLine();
+
+        //
+        System.out.println(" Enter Customer address: ");
+        String address = scanner.nextLine();
+        //
+
+        System.out.println("--------------");
+
+        System.out.println("Choose customer type: 1. Regular / 2.Premium");
+        int customerType = scanner.nextInt();
+        System.out.println(" Choose account type : 1. Savings Account. 2. Checking Account");
+        int accountType = scanner.nextInt();
+
+        System.out.println("Enter initial deposit amount: $2500");
+        double deposit = scanner.nextDouble();
+        // print account created succesfully
+
+        Customer customer;
+        if (customerType ==1){
+            customer = new RegularCustomer(customerName, age,contact,address);
+        } else {
+            customer = new PremiumCustomer(customerName, age,contact,address);
+        }
+        // account object
+        Account account;
+        if (accountType == 1){
+            account = new SavingsAccount(customer, deposit);
+        }else {
+            account = new CheckingAccount(customer, deposit)
+        }
+
+
     }
 
     public static void viewAccounts() {

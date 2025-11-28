@@ -4,7 +4,7 @@ public class PremiumCustomer extends Customer {
 
     private double minimumBalance;
 
-    PremiumCustomer(String name, int age, String contact, String address) {
+    public PremiumCustomer(String name, int age, String contact, String address) {
         super(name, age, contact, address);
         this.minimumBalance = 1000.0;
     }
