@@ -6,8 +6,6 @@ import customers.Customer;
 import customers.PremiumCustomer;
 import customers.RegularCustomer;
 import processTransaction.TransactionManager;
-
-
 import java.util.Scanner;
 
 public class Main {
@@ -20,48 +18,42 @@ public class Main {
         int choice;
 
         do {
-            // Display Menu
-            System.out.println("____________________________________________________________");
-            System.out.println();
-            System.out.println("  ┌───────────────────────────────────────────────┐");
-            System.out.println("  │      BANK ACCOUNT MANAGEMENT - MAIN MENU     │");
-            System.out.println("  └───────────────────────────────────────────────┘");
-            System.out.println();
-            System.out.println("  1. Create Account");
-            System.out.println("  2. View Accounts");
-            System.out.println("  3. Process Transaction");
-            System.out.println("  4. View Transaction History");
-            System.out.println("  5. Exit");
-            System.out.println();
-            System.out.print("  Enter choice: ");
+            System.out.println("________________________________________");
+            System.out.println("BANK ACCOUNT MANAGEMENT SYSTEM");
+            System.out.println("1. Create Account");
+            System.out.println("2. View Accounts");
+            System.out.println("3. Process Transaction");
+            System.out.println("4. View Transaction History");
+            System.out.println("5. Exit");
+            System.out.print("Enter choice: ");
 
             choice = scanner.nextInt();
             scanner.nextLine();
-            System.out.println();
 
             switch (choice) {
+
                 case 1:
-                    createAccount(scanner , manager);
+                    createAccount(scanner, manager);
                     break;
 
                 case 2:
-                    viewAccounts();
+                    viewAccounts(scanner, manager);
                     break;
 
                 case 3:
-                    processTransaction();
+                    processTransaction(scanner, manager, transactionManager);
                     break;
 
                 case 4:
-                    viewTransactionHistory();
+                    viewTransactionHistory(scanner, manager);
                     break;
 
                 case 5:
-                    System.out.println("Exiting system... Thank you for using Bank Account Management.");
+                    System.out.println("Exiting system...");
                     break;
 
                 default:
-                    System.out.println("Invalid choice! Please select between 1 and 5.");
+                    System.out.println("Invalid choice!");
             }
 
         } while (choice != 5);
@@ -69,77 +61,92 @@ public class Main {
         scanner.close();
     }
 
-    // ===== Menu Functions =====
+    // CREATE ACCOUNT
+    public static void createAccount(Scanner scanner, AccountManager accountManager) {
 
-    public static void createAccount(Scanner scanner,AccountManager accountManager) {
-        // User Details
-        System.out.println("[Enter your details]");
-        System.out.println(" Enter Customer name: ");
-        String customerName = scanner.nextLine();
-        System.out.println(" Enter Customer age: ");
+        System.out.print("Enter name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Enter age: ");
         int age = scanner.nextInt();
         scanner.nextLine();
-        //
-        System.out.println(" Enter Customer contact: ");
+
+        System.out.print("Enter contact: ");
         String contact = scanner.nextLine();
 
-        //
-        System.out.println(" Enter Customer address: ");
+        System.out.print("Enter address: ");
         String address = scanner.nextLine();
-        //
 
-        System.out.println("--------------");
-
-        System.out.println("Choose customer type: 1. Regular / 2.Premium");
+        System.out.print("Customer type (1-Regular, 2-Premium): ");
         int customerType = scanner.nextInt();
-        System.out.println(" Choose account type : 1. Savings Account. 2. Checking Account");
+
+        System.out.print("Account type (1-Savings, 2-Checking): ");
         int accountType = scanner.nextInt();
 
-        System.out.println("Enter initial deposit amount: $2500");
+        System.out.print("Initial deposit: ");
         double deposit = scanner.nextDouble();
-        // print account created succesfully
-
-        Customer customer;
-        if (customerType ==1){
-            customer = new RegularCustomer(customerName, age,contact,address);
-        } else {
-            customer = new PremiumCustomer(customerName, age,contact,address);
-        }
-        // account object
-        Account account;
-        if (accountType == 1){
-            account = new SavingsAccount(customer, deposit);
-        }else {
-            account = new CheckingAccount(customer, deposit);
-        }
-        accountManager.addAccount(account);
-
-        System.out.print("Account created successfully!!");
-
-        account.displayAccountDetails();
-
-        System.out.println("Press enter to continue...");
         scanner.nextLine();
 
+        Customer customer =
+                (customerType == 1)
+                        ? new RegularCustomer(name, age, contact, address)
+                        : new PremiumCustomer(name, age, contact, address);
 
+        Account account =
+                (accountType == 1)
+                        ? new SavingsAccount(customer, deposit)
+                        : new CheckingAccount(customer, deposit);
 
+        accountManager.addAccount(account);
+        account.displayAccountDetails();
+        System.out.println("Account created successfully!");
     }
 
-    public static void viewAccounts() {
-        System.out.println("[View Accounts]");
-        System.out.println("No accounts available to display.");
-        System.out.println();
+    // VIEW ACCOUNTS
+    public static void viewAccounts(Scanner scanner, AccountManager accountManager) {
+        accountManager.viewAllAccounts();
+        System.out.println("Press Enter...");
+        scanner.nextLine();
     }
 
-    public static void processTransaction() {
-        System.out.println("[Process Transaction]");
-        System.out.println("Transaction processing feature coming soon...");
-        System.out.println();
+    // PROCESS TRANSACTION
+    public static void processTransaction(Scanner scanner, AccountManager accountManager, TransactionManager transactionManager) {
+
+        System.out.print("Enter Account Number: ");
+        String accountNumber = scanner.nextLine();
+
+        Account account = accountManager.findAccount(accountNumber);
+
+        if (account == null) {
+            System.out.println("Account not found!");
+            return;
+        }
+
+        System.out.println("1. Deposit  2. Withdraw");
+        int choice = scanner.nextInt();
+
+        System.out.print("Amount: ");
+        double amount = scanner.nextDouble();
+        scanner.nextLine();
+
+        if (choice == 1) {
+            account.deposit(amount);
+            transactionManager.calculateTotalDeposits(accountNumber);
+        } else {
+            account.withdraw(amount);
+            transactionManager.calculateTotalDeposits(accountNumber);
+        }
+
+        System.out.println("Transaction Successful!");
     }
 
-    public static void viewTransactionHistory() {
-        System.out.println("[View Transaction History]");
-        System.out.println("No transaction history found.");
-        System.out.println();
+    // VIEW TRANSACTION HISTORY
+    public static void viewTransactionHistory(Scanner scanner, AccountManager accountManager) {
+
+        System.out.print("Enter Account Number: ");
+        String accountNumber = scanner.nextLine();
+
+        accountManager.findAccount(accountNumber);
+        System.out.println("Transaction Records:");
     }
 }
