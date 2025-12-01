@@ -17,10 +17,10 @@ public class CheckingAccount extends Account {
     @Override
     public void displayAccountDetails() {
         System.out.println( "Account Number: " + getAccountNumber() +
-                "\nCustomer Name: " + getCustomer() +
-                "\nAccount Type: Checking" +
-                "\nBalance: $" + getBalance() +
-                "\nOverdraft Limit: $" + overdraftLimit
+                "| |Customer Name: " + getCustomer().getName() +
+                "| |Account Type: Checking" +
+                "| |Balance: $" + getBalance() +
+                "| |Overdraft Limit: $" + overdraftLimit
         );
     }
 

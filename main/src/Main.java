@@ -29,7 +29,7 @@ class Main {
             System.out.println();
             System.out.println("+-----------+");
             System.out.println("| MAIN MENU |");
-            System.out.println("+-----------+");
+            System.out.println("-----------+");
             System.out.println("1. Create Account");
             System.out.println("2. View Accounts");
             System.out.println("3. Process Transaction");
@@ -56,7 +56,7 @@ class Main {
                 default:
                     System.out.println("\nInvalid Input. Try Again!\n");
             }
-        } while (choice != 6);
+        } while (choice != 5);
 
         scanner.close();
 
@@ -67,17 +67,13 @@ class Main {
 
 
 
-    /**
-     * View transaction history.
-     *
-     * @param transactionManager the transaction manager
-     * @param scanner            the scanner
-     */
+  //------- view Account -------
+
     public static void viewTransactionHistory(TransactionManager transactionManager, Scanner scanner) {
         System.out.println();
-        System.out.println("+--------------------------+");
+        System.out.println("--------------------------+");
         System.out.println("| VIEW TRANSACTION HISTORY |");
-        System.out.println("+--------------------------+");
+        System.out.println("--------------------------+");
 
         String accountNumber = readString(scanner, "\nEnter Account number: ");
 
@@ -85,18 +81,12 @@ class Main {
     }
 
 
-    /**
-     * Process transaction.
-     *
-     * @param accountManager     the account manager
-     * @param transactionManager the transaction manager
-     * @param scanner            the scanner
-     */
+  //-----process transaction---------
     public static void processTransaction(AccountManager accountManager, TransactionManager transactionManager, Scanner scanner) {
         System.out.println();
-        System.out.println("+---------------------+");
-        System.out.println("| PROCESS TRANSACTION |");
-        System.out.println("+---------------------+");
+        System.out.println("---------------------");
+        System.out.println(" PROCESS TRANSACTION ");
+        System.out.println("---------------------");
 
         String accountNumber = readString(scanner, "\nEnter Account number: ");
 

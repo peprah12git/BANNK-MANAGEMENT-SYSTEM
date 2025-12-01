@@ -18,8 +18,12 @@ public class SavingsAccount extends Account{
     @Override
     public void displayAccountDetails() {
         String baseDetails;
-        System.out.println("Interest Rate: " + interestRate + "%");
-        System.out.println("Minimum Balance: $" + minimumBalance);
+        System.out.println( "Account Number: " + getAccountNumber() +
+                "| |Customer Name: " + getCustomer().getName() +
+                "| |Account Type: Savings" +
+                "| |Balance: $" + getBalance() +
+       "| | Interest Rate: " + interestRate + "%" +
+       "| | Minimum Balance: $" + minimumBalance);
 
     }
 
