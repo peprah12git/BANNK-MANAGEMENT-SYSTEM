@@ -33,6 +33,26 @@ public class SavingsAccount extends Account{
     }
 
     @Override
+    public boolean processTransaction(double amount, String type) {
+        if (type.equalsIgnoreCase("Deposit")) {
+            if (amount <= 0) {
+                return false;
+            }
+            this.deposit(amount);
+            return true;
+        } else if (type.equalsIgnoreCase("Withdrawal")) {
+            if (amount <= 0) {
+                return false;
+            }
+            double oldBalance = this.getBalance();
+            this.withdraw(amount);
+            return this.getBalance() != oldBalance;
+        }
+        return false;
+    }
+
+
+    @Override
     public String getAccountType() {
         return "Savings";
     }
@@ -41,5 +61,6 @@ public class SavingsAccount extends Account{
     public double calculateInterest() {
         return (getBalance() + interestRate) / 100;
     }
+// process t
 
 }

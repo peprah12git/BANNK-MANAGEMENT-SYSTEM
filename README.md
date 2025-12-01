@@ -9,9 +9,9 @@ Create accounts - Register new bank accounts of customers
 
 View Accounts - Display all account within the details
 
-Process Transactions - Deposit and withdraw money
+Process transactions - Deposit and withdraw money
 
-View Transactions - Display Transaction history of an account
+View transactions - Display Transaction history of an account
 
 simpple Menu- Navigate through options
 

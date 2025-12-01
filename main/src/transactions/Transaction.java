@@ -1,4 +1,4 @@
-package processTransaction;
+package transactions;
 
 import java.time.*;
 
@@ -11,7 +11,7 @@ public class Transaction {
     private  double balanceAfter;
     private String timestamp;
 
-    Transaction( String accountNumber, String type, double amount, double balanceAfter){
+    public Transaction( String accountNumber, String type, double amount, double balanceAfter){
         this.accountNumber= accountNumber;
         this.type= type;
         this.amount = amount;
@@ -71,7 +71,7 @@ public class Transaction {
         this.balanceAfter = balanceAfter;
     }
 
-    public String getStringTimestamp() {
+    public String getTimestamp() {
         return  timestamp;
     }
 

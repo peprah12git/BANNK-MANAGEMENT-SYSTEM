@@ -15,7 +15,7 @@ public abstract class Account {
         this.accountNumber = generate() ;
         this.customer = customer;
         this.balance = balance;
-        this.status = "active";
+        this.status = "Active";
         //this.accountNumber= accountCounter;
     }
 
@@ -29,6 +29,9 @@ public abstract class Account {
     }
     public Customer getCustomer() {
         return customer;
+    }
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
     public double getBalance() {
         return balance;
@@ -69,4 +72,7 @@ public abstract class Account {
         }
         return true;
     }
+
+    public abstract boolean processTransaction(double amount, String type);
+
 }

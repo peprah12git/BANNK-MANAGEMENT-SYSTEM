@@ -1,4 +1,4 @@
-package processTransaction;
+package transactions;
 
 public interface Transactable {
     boolean processTransaction(double amount, String type);

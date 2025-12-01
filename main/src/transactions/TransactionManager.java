@@ -1,4 +1,4 @@
-package processTransaction;
+package transactions;
 
 public class TransactionManager {
 
