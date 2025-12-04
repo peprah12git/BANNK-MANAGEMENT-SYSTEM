@@ -27,20 +27,24 @@ public abstract class Account {
     public String getAccountNumber() {
         return accountNumber;
     }
+    // getter for customer
     public Customer getCustomer() {
         return customer;
     }
+    // setter for customer
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+    //-------getter for balance------
     public double getBalance() {
         return balance;
     }
+    //-------getter for Status------
     public String getStatus() {
         return status;
     }
 
-    // setter for customer
+    // setter for status
     public void setStatus(String status) {
         this.status = status;
     }

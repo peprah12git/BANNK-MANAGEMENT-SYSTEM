@@ -3,7 +3,7 @@ package transactions;
 import java.time.*;
 
 public class Transaction {
-    static int  transactionCounter;
+     static int  transactionCounter;
     private  String transactionId;
     private  String accountNumber;
    private String type;
@@ -17,6 +17,7 @@ public class Transaction {
         this.amount = amount;
         this.balanceAfter= balanceAfter;
         this.timestamp = LocalDateTime.now().toString();
+        this.transactionId = generate();
 
     }
     static String generate() {

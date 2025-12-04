@@ -17,7 +17,6 @@ public class SavingsAccount extends Account{
 
     @Override
     public void displayAccountDetails() {
-        String baseDetails;
         System.out.println( "Account Number: " + getAccountNumber() +
                 "| |Customer Name: " + getCustomer().getName() +
                 "| |Account Type: Savings" +

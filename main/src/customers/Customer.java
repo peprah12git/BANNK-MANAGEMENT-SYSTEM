@@ -30,7 +30,7 @@ public abstract class Customer {
         return name;
     }
 
-    public int getAge() {
+    public int getAge(){
         return age;
     }
 

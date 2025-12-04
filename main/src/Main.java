@@ -14,9 +14,9 @@ class Main {
 
       //-----------Main.-------------
     public static void main(String[] args) {
-        System.out.println("+-------------------------+");
-        System.out.println("| BANK ACCOUNT MANAGEMENT |");
-        System.out.println("+-------------------------+");
+        System.out.println("-------------------------");
+        System.out.println(" BANK ACCOUNT MANAGEMENT ");
+        System.out.println("-------------------------");
 
         // create an account manager and a transaction manager.
         AccountManager accountManager = new AccountManager();
@@ -27,9 +27,9 @@ class Main {
 
         do {
             System.out.println();
-            System.out.println("+-----------+");
-            System.out.println("| MAIN MENU |");
-            System.out.println("-----------+");
+            System.out.println("-----------");
+            System.out.println(" MAIN MENU ");
+            System.out.println("-----------");
             System.out.println("1. Create Account");
             System.out.println("2. View Accounts");
             System.out.println("3. Process Transaction");
@@ -71,9 +71,9 @@ class Main {
 
     public static void viewTransactionHistory(TransactionManager transactionManager, Scanner scanner) {
         System.out.println();
-        System.out.println("--------------------------+");
-        System.out.println("| VIEW TRANSACTION HISTORY |");
-        System.out.println("--------------------------+");
+        System.out.println("--------------------------");
+        System.out.println("| VIEW TRANSACTION HISTORY ");
+        System.out.println("--------------------------");
 
         String accountNumber = readString(scanner, "\nEnter Account number: ");
 
@@ -112,15 +112,14 @@ class Main {
         Transaction transaction = new Transaction(
                 account.getAccountNumber(),
                 (transactionType == 1) ? "DEPOSIT" : "WITHDRAWAL",
-                amount,
-                amountAfter);
+                amount,amountAfter);
 
 
         System.out.println();
         System.out.println("+--------------------------+");
         System.out.println("| Transaction Confirmation |");
         System.out.println("+--------------------------+");
-        System.out.println("Transaction ID: " + transaction.getTransactionId());
+        System.out.println("Transaction ID: " +transaction.getTransactionId());
         System.out.println("Account: " + account.getAccountNumber());
         System.out.println("Type: " + typeStr.toUpperCase());
         System.out.println("Amount: $" + amount);
@@ -133,7 +132,7 @@ class Main {
 
         if (!confirm.startsWith("y")) {
             System.out.println("Transaction cancelled.");
-            transaction = null;
+//            transaction = null;
             return;
         }
 
@@ -178,10 +177,10 @@ class Main {
         Customer customer = createCustomer(scanner);
         Account account = createAccountForCustomer(scanner, customer);
 
-        System.out.println();
-        System.out.println("+--------------+");
-        System.out.println("| Confirmation |");
-        System.out.println("+--------------+");
+
+        System.out.println("--------------");
+        System.out.println(" Confirmation ");
+        System.out.println("--------------");
         System.out.println("Customer Name: " + customer.getName());
         System.out.println("Customer Type: " + (customer instanceof RegularCustomer ? "Regular" : "Premium"));
         System.out.println("Account Type: " + account.getAccountType());
@@ -248,7 +247,7 @@ class Main {
     }
 
 
-      //----------View accounts.
+      //----------View accounts-------------------------.
     public static void viewAccounts(AccountManager accountManager, Scanner scanner) {
         accountManager.viewAllAccounts();
     }
